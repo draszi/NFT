@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Deploying Counter to Polygon</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<body>
+    <div>
+        <p>Wallet address - <span id="wallet-address"></span></p>
+        <button id="mint">Mint an NFT</button>
+    </div>
+    <script type="text/javascript">
+    // 1. Connect metamask to our site. Get the user's address
+        var account = null;
+        var contract = null;
+        const ABI = [];
+        const ADDRESS = "0xA76b72945cC8Ad606C3CdFD03b368b1262C8F7fB";
+        (async () => {
+            if (window.ethereum) {
+                await window.ethereum.send('eth_requestAccounts');
+                window.web3 = new Web3(window.ethereum);
+
+                var accounts = await web3.eth.getAccounts();
+                account = accounts[0];
+                document.getElementById('wallet-address').textContent = account;
+            }
+    })();
+    </script>
+</body>
+</html>
